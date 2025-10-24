@@ -60,13 +60,10 @@ impl IntoResponse for AuthHandlerError {
         let (status, message) = match self.0 {
             AuthError::InvalidCredentials => (StatusCode::UNAUTHORIZED, "Invalid credentials"),
             AuthError::UserAlreadyExists => (StatusCode::CONFLICT, "User already exists"),
-            AuthError::DatabaseError(_) => {
-                (StatusCode::INTERNAL_SERVER_ERROR, "Database error")
+            AuthError::DatabaseError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "Database error"),
+            AuthError::PasswordHashError => {
+                (StatusCode::INTERNAL_SERVER_ERROR, "Password hashing error")
             }
-            AuthError::PasswordHashError => (
-                StatusCode::INTERNAL_SERVER_ERROR,
-                "Password hashing error",
-            ),
             AuthError::JwtError(_) => (StatusCode::INTERNAL_SERVER_ERROR, "JWT error"),
         };
 

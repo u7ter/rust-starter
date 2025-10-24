@@ -52,8 +52,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     tracing::info!("Database migrations completed");
 
     // Create router
-    let app = create_routes(pool.clone(), config.clone())
-        .layer(TraceLayer::new_for_http());
+    let app = create_routes(pool.clone(), config.clone()).layer(TraceLayer::new_for_http());
 
     // Start server
     let addr = format!("{}:{}", config.server_host, config.server_port);

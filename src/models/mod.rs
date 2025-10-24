@@ -1,5 +1,5 @@
-pub mod user;
 pub mod auth;
+pub mod user;
 
+pub use auth::{Claims, LoginRequest, LoginResponse, RegisterRequest};
 pub use user::{User, UserResponse};
-pub use auth::{RegisterRequest, LoginRequest, LoginResponse, Claims};

@@ -28,14 +28,11 @@ impl Config {
             .parse()
             .map_err(|_| "Invalid SERVER_PORT")?;
 
-        let server_host = env::var("SERVER_HOST")
-            .unwrap_or_else(|_| "0.0.0.0".to_string());
+        let server_host = env::var("SERVER_HOST").unwrap_or_else(|_| "0.0.0.0".to_string());
 
-        let database_url = env::var("DATABASE_URL")
-            .map_err(|_| "DATABASE_URL must be set")?;
+        let database_url = env::var("DATABASE_URL").map_err(|_| "DATABASE_URL must be set")?;
 
-        let jwt_secret = env::var("JWT_SECRET")
-            .map_err(|_| "JWT_SECRET must be set")?;
+        let jwt_secret = env::var("JWT_SECRET").map_err(|_| "JWT_SECRET must be set")?;
 
         let jwt_expiration_hours = env::var("JWT_EXPIRATION_HOURS")
             .unwrap_or_else(|_| "24".to_string())

@@ -6,7 +6,7 @@ use chrono::{Duration, Utc};
 use jsonwebtoken::{decode, encode, DecodingKey, EncodingKey, Header, Validation};
 use thiserror::Error;
 
-use crate::models::{Claims, LoginRequest, LoginResponse, RegisterRequest, User, UserResponse};
+use crate::models::{Claims, LoginRequest, LoginResponse, RegisterRequest, User};
 use crate::repositories::UserRepository;
 
 #[derive(Error, Debug)]
@@ -31,7 +31,11 @@ pub struct AuthService {
 }
 
 impl AuthService {
-    pub fn new(user_repository: UserRepository, jwt_secret: String, jwt_expiration_hours: i64) -> Self {
+    pub fn new(
+        user_repository: UserRepository,
+        jwt_secret: String,
+        jwt_expiration_hours: i64,
+    ) -> Self {
         Self {
             user_repository,
             jwt_secret,
@@ -107,8 +111,8 @@ impl AuthService {
     }
 
     fn verify_password(&self, password: &str, password_hash: &str) -> Result<(), AuthError> {
-        let parsed_hash = PasswordHash::new(password_hash)
-            .map_err(|_| AuthError::PasswordHashError)?;
+        let parsed_hash =
+            PasswordHash::new(password_hash).map_err(|_| AuthError::PasswordHashError)?;
 
         Argon2::default()
             .verify_password(password.as_bytes(), &parsed_hash)

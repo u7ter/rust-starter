@@ -28,10 +28,10 @@ pub struct LoginResponse {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Claims {
-    pub sub: String,  // user id
+    pub sub: String, // user id
     pub email: String,
-    pub exp: i64,     // expiration time
-    pub iat: i64,     // issued at
+    pub exp: i64, // expiration time
+    pub iat: i64, // issued at
 }
 
 impl Claims {

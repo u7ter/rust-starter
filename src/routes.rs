@@ -75,7 +75,8 @@ pub fn create_routes(pool: PgPool, config: Config) -> Router {
 
     // Add Swagger UI in development mode
     if !config.is_production() {
-        app = app.merge(SwaggerUi::new("/api-docs").url("/api-docs/openapi.json", ApiDoc::openapi()));
+        app =
+            app.merge(SwaggerUi::new("/api-docs").url("/api-docs/openapi.json", ApiDoc::openapi()));
     }
 
     app
