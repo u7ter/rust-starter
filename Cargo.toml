@@ -1,0 +1,50 @@
+[package]
+name = "tust-starter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Web framework
+axum = { version = "0.7", features = ["macros"] }
+tokio = { version = "1.35", features = ["full"] }
+tower = { version = "0.4", features = ["util", "timeout", "load-shed", "limit"] }
+tower-http = { version = "0.5", features = ["fs", "trace", "cors"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Database
+sqlx = { version = "0.7", features = ["runtime-tokio-native-tls", "postgres", "migrate", "chrono", "uuid"] }
+
+# Authentication & Security
+jsonwebtoken = "9.2"
+argon2 = "0.5"
+uuid = { version = "1.6", features = ["serde", "v4"] }
+
+# Logging & Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Configuration
+dotenvy = "0.15"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Rate limiting
+governor = "0.6"
+
+# OpenAPI documentation
+utoipa = { version = "4.2", features = ["axum_extras"] }
+utoipa-swagger-ui = { version = "6.0", features = ["axum"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Password hashing
+rand = "0.8"
+
+[dev-dependencies]
+http-body-util = "0.1"
